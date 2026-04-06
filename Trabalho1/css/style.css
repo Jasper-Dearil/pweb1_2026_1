@@ -1,0 +1,106 @@
+/* Importação de fonte gótica via Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Special+Elite&display=swap');
+
+:root {
+    --gothic-red: #5a0000;
+    --gothic-gold: #c5a059;
+    --dark-bg: #121212;
+    --card-bg: #1e1e1e;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: #d4d4d4;
+    font-family: 'Special+Elite', cursive; /* Fonte que lembra máquina de escrever (diário do detetive) */
+}
+
+h1, h2, h3, .navbar-brand {
+    font-family: 'Cinzel', serif;
+    color: var(--gothic-gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* HEADER REFINADO */
+header {
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                url('https://www.transparenttextures.com/patterns/dark-matter.png');
+    border-bottom: 2px solid var(--gothic-gold);
+}
+
+/* NAVBAR GÓTICA */
+.navbar {
+    border-bottom: 1px solid var(--gothic-red);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.7);
+}
+
+.nav-link {
+    transition: 0.3s;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover {
+    color: var(--gothic-red) !important;
+    border-bottom: 2px solid var(--gothic-red);
+}
+
+/* BANNER COM TAMANHO FIXO (Item solicitado) */
+.carousel-item {
+    height: 500px; /* Altura fixa para o banner */
+}
+
+.carousel-item img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; /* Faz a imagem preencher o espaço sem esticar */
+    filter: sepia(30%) contrast(110%) brightness(80%);
+    border: 3px solid #333;
+}
+
+/* CARDS REFINADOS */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid #333;
+    border-left: 4px solid var(--gothic-red); /* Detalhe gótico lateral */
+    color: #e0e0e0;
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-left-color: var(--gothic-gold);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.card h2, .card h5 {
+    color: var(--gothic-gold);
+}
+
+/* SEÇÕES COM DIVISORES CUSTOMIZADOS */
+section h2 {
+    border-left: 5px solid var(--gothic-red);
+    padding-left: 15px;
+    margin-bottom: 25px;
+}
+
+/* FOOTER GÓTICO */
+footer {
+    border-top: 2px solid var(--gothic-gold);
+    background: #000 !important;
+    padding: 40px 0 !important;
+}
+
+.footer-link {
+    color: var(--gothic-gold);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-link:hover {
+    color: var(--gothic-red);
+}
+
+/* Responsividade para o Banner */
+@media (max-width: 768px) {
+    .carousel-item { height: 300px; }
+}
