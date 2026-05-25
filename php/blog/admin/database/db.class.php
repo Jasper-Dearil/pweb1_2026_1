@@ -1,6 +1,8 @@
 <?php
 
+
 class db {
+
 
     private $host     = 'localhost';
     private $user     = 'root';
@@ -10,11 +12,13 @@ class db {
     private $table_name;
     private $conn; // conexão fica guardada para reutilizar
 
+
     public function __construct($table_name)
     {
         $this->table_name = $table_name;
         $this->conn = $this->connect(); // cria a conexão uma única vez
     }
+
 
     // Método privado: apenas a própria classe pode chamar
     private function connect()
@@ -32,6 +36,25 @@ class db {
             die('Erro na conexão: ' . $e->getMessage());
         }
     }
+//SELECT*FROM tabela
+
+public function destroy($id) {
+
+    try{
+        $sql = "DELETE FROM $this->table_name WHERE id= ?;";
+        $st  = $this->conn->prepare($sql);
+        $st->execute([$id]);
+    } catch (PDOException $e) {
+        throw new Exception(("erro tudo " . $e->getMessage()));
+    }
+}
+
+public function all(){
+    $sql = "SELECT * FROM $this->table_name";
+    $st = $this ->conn->prepare($sql);
+    $st->execute();
+    return $st ->fetchALL(PDO::FETCH_CLASS);
+}
 
     //INSERT INTO tabela ('campo1', 'campo2') VALUES (?, ?);
     public function store($dados)
@@ -53,8 +76,32 @@ class db {
             $st = $this->conn->prepare($sql);
             $st->execute($vetorData);
         } catch (PDOException $e) {
-            var_dump("Erro ao inserir", $e->getMessage());
+           throw new Exception("Erro ao inserir", $e->getMessage());
         }
+    }
 
+//SELECT * FROM tabela
+
+public function destroy($id) 
+{
+    try{
+        $sql = "DELETE FROM $this->table_name WHERE id= ?;";
+        $st = $this ->conn->prepare($sql);
+        $st->execute([$id]);
+    } catch (PDOException $e){
+        throw new Exception(("erro tudo" . $e->getMessage()));
+    }
+}
+    //SELECT * FROM tabela WHERE campo LIKE '%valor%'
+    public function search($dados)
+    {
+        $camp = $dados['tipo'];
+        $valor = $dados['valor'];
+
+        $sql = "SELECT * FROM $this->table_name WHERE $campo LIKE ? ";
+        $st = $this->conn->prepare($sql);
+        $st->execute(["%$valor%"]);
+
+        return $st->fetchAll(PDO::FETCH_CLASS);
     }
 }
