@@ -1,14 +1,21 @@
 <?php
-include './header.php';
-?>
-
-<div class="col">
-
-    <a href="./aulas/aula03_formulario.php" class="btn btn-primary">Formulário Aluno</a>
-
-</div>
 
 
-<?php
-include './footer.php';
+include_once './admin/database/db.class.php';
+
+/*
+$conn = new db("aluno");
+
+
+$dados = [
+    'nome'=> "Teste1",
+    'telefone' => "12345678",
+    'email' => "EmailTeste@gmail.com",
+];
+$conn->store($dados);
+/*/
+
+echo "Dados inseridos com sucesso!";
+
+
 ?>

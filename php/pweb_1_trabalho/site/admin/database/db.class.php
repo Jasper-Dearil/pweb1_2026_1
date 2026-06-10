@@ -72,6 +72,7 @@ class db
         $marcadores = "";
         $vetorData = [];
         $sep = "";
+       unset($dados['id']);
 
         foreach ($dados as $campo => $valor) {
             $campos .= $sep . $campo;
